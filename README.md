@@ -77,12 +77,12 @@ ascii-art/
 
 ## Testing
 
-Run all 33 tests:
+Run all 31 tests:
 ```bash
 go test ./tests -v
 ```
 
-Expected: All tests pass in ~5ms
+Expected: All tests pass in ~5ms (Depending on the machine)
 
 ## Current State
 

@@ -11,7 +11,7 @@ This directory contains comprehensive documentation of all test cases for the AS
 
 ## Overview
 
-- **Total Test Cases**: 33
+- **Total Test Cases**: 31
 - **Pass Rate**: 100%
 - **Coverage**: Core functions (ParseInput, Render, LoadFont, HasGlyph, ParseFontLines)
 
