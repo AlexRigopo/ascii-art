@@ -71,8 +71,7 @@ ascii-art/
 └── test_cases/                    # Test documentation
     ├── input_tests.md
     ├── font_tests.md
-    ├── render_tests.md
-    └── TEST_EXECUTION_REPORT.md
+    └── render_tests.md
 ```
 
 ## Testing
@@ -82,7 +81,6 @@ Run all 31 tests:
 go test ./tests -v
 ```
 
-Expected: All tests pass in ~5ms (Depending on the machine)
 
 ## Current State
 
