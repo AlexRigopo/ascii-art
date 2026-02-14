@@ -3,40 +3,39 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"ascii-art/asciiart"
 )
 
 // main is the entry point for the ASCII Art Generator.
-// It takes exactly one command-line argument (the text to render as ASCII art).
-// It parses the input, loads the standard banner font, renders the text,
-// and prints the result to standard output.
-// Exits with status code 1 if arguments are invalid or rendering fails.
+// It takes exactly one command-line argument (the text to render).
+// Parses input, loads the standard font, renders & prints ASCII art.
+// Exits with status 1 on error.
 func main() {
 	if len(os.Args) != 2 {
-		// The subject examples assume exactly one argument.
-		// You can tweak this if your evaluator wants silent failure instead.
 		fmt.Fprintln(os.Stderr, "Usage: go run . \"Your text here\"")
 		os.Exit(1)
 	}
 
 	raw := os.Args[1]
 
-	// Special case: empty string → no output at all (see subject example).
+	// Empty input → no output
 	if raw == "" {
 		return
 	}
 
 	lines := asciiart.ParseInput(raw)
 
-	// Load the standard banner font (default)
-	font, err := asciiart.LoadFont("banners/standard.txt")
+	// Find font file relative to executable or working directory
+	fontPath := findFontFile("banners/standard.txt")
+	font, err := asciiart.LoadFont(fontPath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error loading font:", err)
 		os.Exit(1)
 	}
 
-	// Render the ASCII art
+	// Render and print
 	output, err := asciiart.Render(lines, font)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "render error:", err)
@@ -44,4 +43,25 @@ func main() {
 	}
 
 	fmt.Print(output)
+}
+
+// findFontFile looks for font in multiple paths
+// First tries relative to executable, then relative to working directory
+func findFontFile(relative string) string {
+	// Try current working directory first (most common case)
+	if _, err := os.Stat(relative); err == nil {
+		return relative
+	}
+
+	// Try relative to executable path
+	exe, err := os.Executable()
+	if err == nil {
+		exePath := filepath.Join(filepath.Dir(exe), relative)
+		if _, err := os.Stat(exePath); err == nil {
+			return exePath
+		}
+	}
+
+	// Fall back to original (will fail with clear error)
+	return relative
 }

@@ -1,85 +1,99 @@
 # ASCII Art Generator
 
-A Go application that converts text input into ASCII art using various banner fonts.
+A simple Go app that converts text into ASCII art using banner fonts. Just type some text and watch it turn into art.
 
-## Features
+## What It Does
 
-- Multiple font styles (Standard, Shadow, Thinkertoy)
-- Support for escaped newlines (`\n`)
-- Customizable font loading
-- Comprehensive test coverage
+- Takes text input and renders it as ASCII art
+- Supports multiple lines with `\n` for line breaks
+- Includes 3 different fonts: Standard, Shadow, and Thinkertoy
+- Handles special characters (!, @, #, etc.)
+- Normalizes line endings (Windows/Unix friendly)
 
-## Installation
+## Quick Start
 
-### Prerequisites
+### Requirements
 
-- Go 1.16 or higher
+- Go 1.16+
 
-### Build
+### Build & Run
 
 ```bash
 git clone <repository-url>
 cd ascii-art
-go build -o ascii-art main.go
-```
-
-## Usage
-
-### Basic Usage
-
-```bash
+go build
 ./ascii-art "Hello World"
 ```
 
-### With Different Font
-
+Or run directly:
 ```bash
-./ascii-art --font=shadow "Hello"
-./ascii-art --font=thinkertoy "World"
+go run . "Your text here"
 ```
 
+## Usage Examples
+
+### Basic Text
+```bash
+./ascii-art "Hello"
+```
+Outputs your text in ASCII art using the default (standard) font.
+
 ### Multiple Lines
-
-Use `\n` for line breaks:
-
 ```bash
 ./ascii-art "Hello\nWorld"
 ```
+Use escaped newlines to render multiple lines.
+
+### With Spaces & Special Characters
+```bash
+./ascii-art "Go-Lang 3.9!"
+```
+Fully supports spaces, numbers, punctuation, and special symbols.
 
 ## Project Structure
 
 ```
-.
-├── main.go                 # Entry point
-├── asciiart/
-│   ├── font.go            # Font loading and management
-│   ├── input.go           # Input parsing
-│   ├── render.go          # ASCII art rendering
-│   └── errors.go          # Error handling
-├── banners/
-│   ├── standard.txt       # Standard font
-│   ├── shadow.txt         # Shadow font
-│   └── thinkertoy.txt     # Thinkertoy font
-├── tests/
-│   ├── input_test.go      # Input parsing tests
-│   └── render_test.go     # Rendering tests
-├── go.mod                 # Go module definition
-└── README.md              # This file
+ascii-art/
+├── main.go                        # Entry point
+├── asciiart/                      # Core package
+│   ├── font.go                   # Font loading & glyph management
+│   ├── input.go                  # Parses input (handles \n)
+│   ├── render.go                 # Renders ASCII art
+│   └── errors.go                 # Error definitions
+├── banners/                       # Font files
+│   ├── standard.txt              # Default font
+│   ├── shadow.txt                # Shadow style
+│   └── thinkertoy.txt            # Thinkertoy style
+├── tests/                         # Test suite
+│   ├── input_test.go             # Input parsing tests
+│   ├── font_test.go              # Font loading tests
+│   └── render_test.go            # Rendering tests
+└── test_cases/                    # Test documentation
+    ├── input_tests.md
+    ├── font_tests.md
+    ├── render_tests.md
+    └── TEST_EXECUTION_REPORT.md
 ```
 
 ## Testing
 
-Run all tests:
-
-```bash
-go test ./...
-```
-
-Run tests with verbose output:
-
+Run all 33 tests:
 ```bash
 go test ./tests -v
 ```
+
+Expected: All tests pass in ~5ms
+
+## Current State
+
+✅ **Fully functional**
+- Currently hardcoded to use the **standard** font
+- No command-line flags for font selection (future enhancement)
+- Works from the project root directory
+
+### Why standard font only?
+
+Kept it simple for now. The architecture supports multiple fonts — could add CLI flags if needed.
 
 ## Supported Characters
 

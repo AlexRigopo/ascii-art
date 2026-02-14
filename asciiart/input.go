@@ -2,19 +2,9 @@ package asciiart
 
 import "strings"
 
-// ParseInput converts the raw CLI string into logical lines.
-//
-// Parameters:
-//   - raw: The raw string input from the command line.
-//
-// It interprets backslash-n (\n) as a newline character and splits the string accordingly.
-// Other escape sequences are left as-is to keep behavior predictable.
-// Handles Windows-style CRLF line endings by normalizing them to LF.
-//
-// Returns:
-//
-//	[]string: A slice of logical lines, split by newlines.
-//	         Empty strings represent blank lines in the input.
+// ParseInput converts the CLI string into logical lines.
+// Interprets \n as newlines and splits accordingly.
+// Other escapes (like \t) are kept literal.
 func ParseInput(raw string) []string {
 	var b strings.Builder
 
