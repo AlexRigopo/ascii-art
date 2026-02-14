@@ -1,0 +1,70 @@
+=== RUN   TestLoadFontSuccess
+--- PASS: TestLoadFontSuccess (0.00s)
+=== RUN   TestLoadFontFileNotFound
+--- PASS: TestLoadFontFileNotFound (0.00s)
+=== RUN   TestLoadFontAllBanners
+=== RUN   TestLoadFontAllBanners/banners/standard.txt
+=== RUN   TestLoadFontAllBanners/banners/shadow.txt
+=== RUN   TestLoadFontAllBanners/banners/thinkertoy.txt
+--- PASS: TestLoadFontAllBanners (0.00s)
+    --- PASS: TestLoadFontAllBanners/banners/standard.txt (0.00s)
+    --- PASS: TestLoadFontAllBanners/banners/shadow.txt (0.00s)
+    --- PASS: TestLoadFontAllBanners/banners/thinkertoy.txt (0.00s)
+=== RUN   TestHasGlyph
+--- PASS: TestHasGlyph (0.00s)
+=== RUN   TestHasGlyphEmptyFont
+--- PASS: TestHasGlyphEmptyFont (0.00s)
+=== RUN   TestFontGlyphCount
+--- PASS: TestFontGlyphCount (0.00s)
+=== RUN   TestFontGlyphHeight
+--- PASS: TestFontGlyphHeight (0.00s)
+=== RUN   TestParseEmptyFontLines
+--- PASS: TestParseEmptyFontLines (0.00s)
+=== RUN   TestParseFontLinesInsufficientLines
+--- PASS: TestParseFontLinesInsufficientLines (0.00s)
+=== RUN   TestFontStructCreation
+--- PASS: TestFontStructCreation (0.00s)
+=== RUN   TestLoadFontIntegration
+--- PASS: TestLoadFontIntegration (0.00s)
+=== RUN   TestFontGlyphContent
+--- PASS: TestFontGlyphContent (0.00s)
+=== RUN   TestParseInputNoNewline
+--- PASS: TestParseInputNoNewline (0.00s)
+=== RUN   TestParseInputWithEscapedNewline
+--- PASS: TestParseInputWithEscapedNewline (0.00s)
+=== RUN   TestParseInputLeadingAndTrailing
+--- PASS: TestParseInputLeadingAndTrailing (0.00s)
+=== RUN   TestParseInputEmpty
+--- PASS: TestParseInputEmpty (0.00s)
+=== RUN   TestParseInputSingleNewline
+--- PASS: TestParseInputSingleNewline (0.00s)
+=== RUN   TestParseInputMultipleNewlines
+--- PASS: TestParseInputMultipleNewlines (0.00s)
+=== RUN   TestParseInputSpecialCharacters
+--- PASS: TestParseInputSpecialCharacters (0.00s)
+=== RUN   TestParseInputSpaces
+--- PASS: TestParseInputSpaces (0.00s)
+=== RUN   TestParseInputMultipleLines
+--- PASS: TestParseInputMultipleLines (0.00s)
+=== RUN   TestParseInputBackslashNotN
+--- PASS: TestParseInputBackslashNotN (0.00s)
+=== RUN   TestRenderSingleLine
+--- PASS: TestRenderSingleLine (0.00s)
+=== RUN   TestRenderWithSpace
+--- PASS: TestRenderWithSpace (0.00s)
+=== RUN   TestRenderMultipleLogicalLines
+--- PASS: TestRenderMultipleLogicalLines (0.00s)
+=== RUN   TestRenderEmptyLineList
+--- PASS: TestRenderEmptyLineList (0.00s)
+=== RUN   TestRenderBlankLine
+--- PASS: TestRenderBlankLine (0.00s)
+=== RUN   TestRenderUnsupportedCharacter
+--- PASS: TestRenderUnsupportedCharacter (0.00s)
+=== RUN   TestRenderMissingGlyph
+--- PASS: TestRenderMissingGlyph (0.00s)
+=== RUN   TestRenderSingleCharacter
+--- PASS: TestRenderSingleCharacter (0.00s)
+=== RUN   TestRenderOnlySpaces
+--- PASS: TestRenderOnlySpaces (0.00s)
+PASS
+ok  	ascii-art/tests	0.005s

@@ -4,8 +4,17 @@ import "strings"
 
 // ParseInput converts the raw CLI string into logical lines.
 //
-// It interprets backslash-n (\n) as a newline *character*.
+// Parameters:
+//   - raw: The raw string input from the command line.
+//
+// It interprets backslash-n (\n) as a newline character and splits the string accordingly.
 // Other escape sequences are left as-is to keep behavior predictable.
+// Handles Windows-style CRLF line endings by normalizing them to LF.
+//
+// Returns:
+//
+//	[]string: A slice of logical lines, split by newlines.
+//	         Empty strings represent blank lines in the input.
 func ParseInput(raw string) []string {
 	var b strings.Builder
 

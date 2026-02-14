@@ -5,8 +5,20 @@ import (
 	"strings"
 )
 
-// Render turns multiple logical lines into ASCII art using the given font.
-// It does not print; it just returns the string.
+// Render converts text lines into ASCII art using the provided font.
+//
+// Parameters:
+//   - lines: A slice of text strings to render as ASCII art.
+//   - font: A pointer to a Font struct containing glyph definitions.
+//
+// For each non-empty line, it renders the text at font.Height vertical rows.
+// Empty lines produce a single newline. Unsupported characters return an error.
+// The function does not print; it returns the complete ASCII art as a string.
+//
+// Returns:
+//
+//	string: The complete ASCII art with newlines separating rows.
+//	error: An error if an unsupported character is encountered or a glyph is missing.
 func Render(lines []string, font *Font) (string, error) {
 	var out strings.Builder
 

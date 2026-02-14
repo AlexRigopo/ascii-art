@@ -19,6 +19,17 @@ type Font struct {
 
 // LoadFont loads a banner font from a file path, using the standard
 // 8-line per glyph format used by the project subjects.
+//
+// Parameters:
+//   - path: The file path to the banner font file (e.g., "banners/standard.txt").
+//
+// The font file must contain glyph definitions for all ASCII characters from
+// space (32) to tilde (126), each glyph being 8 lines tall.
+//
+// Returns:
+//
+//	*Font: A pointer to the loaded Font struct containing all glyphs.
+//	error: An error if the file cannot be opened, read, or parsed.
 func LoadFont(path string) (*Font, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -38,16 +49,28 @@ func LoadFont(path string) (*Font, error) {
 		return nil, fmt.Errorf("scan font file: %w", err)
 	}
 
-	font, err := parseFontLines(lines)
+	font, err := ParseFontLines(lines)
 	if err != nil {
 		return nil, fmt.Errorf("parse font: %w", err)
 	}
 	return font, nil
 }
 
-// parseFontLines builds a Font from the file lines.
-// Separated to allow easier testing if you want to later.
-func parseFontLines(lines []string) (*Font, error) {
+// ParseFontLines builds a Font struct from parsed file lines.
+//
+// Parameters:
+//   - lines: A slice of strings representing lines read from the font file.
+//
+// This helper function processes the raw file lines into a Font struct with
+// glyph definitions for all ASCII characters (space to tilde).
+// Each character glyph is expected to be exactly fontHeight (8) lines.
+// Separator lines between glyphs are automatically skipped.
+//
+// Returns:
+//
+//	*Font: A pointer to the fully constructed Font struct.
+//	error: An error if the file is malformed or contains insufficient lines.
+func ParseFontLines(lines []string) (*Font, error) {
 	charCount := lastRune - firstRune + 1
 
 	// Minimum lines:
@@ -88,7 +111,14 @@ func parseFontLines(lines []string) (*Font, error) {
 	return font, nil
 }
 
-// HasGlyph reports whether the font contains this rune.
+// HasGlyph checks if the font contains a glyph definition for the given character.
+//
+// Parameters:
+//   - r: The rune (character) to check for in the font.
+//
+// Returns:
+//
+//	bool: true if the font has a glyph for this character, false otherwise.
 func (f *Font) HasGlyph(r rune) bool {
 	_, ok := f.Chars[r]
 	return ok
