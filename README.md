@@ -74,6 +74,27 @@ ascii-art/
     └── render_tests.md
 ```
 
+## Pipeline Architecture
+
+This project uses a **sequential pipeline architecture** where data flows through independent processing stages:
+
+1. **Input Parsing Stage** (`input.go`)
+   - Converts raw command-line string into logical lines
+   - Interprets escaped sequences (like `\n` for newlines)
+   - Output: `[]string` of text lines
+
+2. **Font Loading Stage** (`font.go`)
+   - Loads and parses banner font files
+   - Builds a glyph map for supported ASCII characters
+   - Output: `*Font` struct with height and character glyphs
+
+3. **Rendering Stage** (`render.go`)
+   - Combines parsed input with font data
+   - Generates ASCII art by mapping each character to its glyph
+   - Output: Final ASCII art string
+
+Each stage has a single responsibility and the output of one stage becomes the input to the next, creating a clean, maintainable flow. This modular design makes it easy to extend (e.g., add new fonts, support different character sets) without affecting other parts of the system.
+
 ## Testing
 
 Run all 31 tests:
